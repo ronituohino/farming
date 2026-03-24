@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cj7a8518kk4mg"]
 
-[ext_resource type="Texture2D" uid="uid://862557n3iarv" path="res://icon.svg" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://btlc5btwrnln1" path="res://scenes/world.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://jiixexlwynhy" path="res://scenes/player.tscn" id="2_sugp2"]
 
 [sub_resource type="Environment" id="Environment_sgp6g"]
 background_mode = 1
@@ -10,16 +11,6 @@ background_color = Color(0.6775044, 0.784652, 1, 1)
 
 [sub_resource type="Compositor" id="Compositor_0wfyh"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_0wfyh"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_sgp6g"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o5qli"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sugp2"]
-radius = 0.3
-height = 1.6
-
 [node name="Node3D" type="Node3D" unique_id=1335767999]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=919627812]
@@ -27,26 +18,7 @@ environment = SubResource("Environment_sgp6g")
 camera_attributes = SubResource("CameraAttributesPractical_o5qli")
 compositor = SubResource("Compositor_0wfyh")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1558154607]
-transform = Transform3D(1, 0, 0, 0, 0.7635594, 0.64573765, 0, -0.64573765, 0.7635594, 0, 2.053435, 2.36079)
+[node name="World" parent="." unique_id=1591745391 instance=ExtResource("1_0wfyh")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=105087617]
-transform = Transform3D(6.76, 0, 0, 0, 0.4, 0, 0, 0, 7.14, 0, 0, 0)
-mesh = SubResource("BoxMesh_0wfyh")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=381206350]
-physics_material_override = SubResource("PhysicsMaterial_sgp6g")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1322586023]
-shape = SubResource("BoxShape3D_o5qli")
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=2051501433]
+[node name="Player3D" parent="." unique_id=2052042716 instance=ExtResource("2_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5633421, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1896919283]
-shape = SubResource("CapsuleShape3D_sugp2")
-
-[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D" unique_id=1395897277]
-transform = Transform3D(0.5, 0, 0, 0, 1.6, 0, 0, 0, 0.5, 0, 0, 0)
-billboard = 1
-texture = ExtResource("1_o5qli")
