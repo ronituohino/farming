@@ -20,8 +20,8 @@ texture = ExtResource("1_3vyb7")
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=1634572972]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.9117835, 0.41067111, 0, -0.41067111, 0.9117835, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9191353, 0.39394188, 0, -0.39394188, 0.9191353, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=169622289]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49, 4.11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.11)
