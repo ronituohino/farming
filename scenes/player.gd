@@ -16,6 +16,8 @@ var _camera_input_direction := Vector2.ZERO
 @export_group("Movement")
 @export var move_speed := 8.0
 @export var acceleration := 20.0
+@export var gravity := -30
+@export var jump_impulse := 12.0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -38,4 +40,19 @@ func _physics_process(delta: float) -> void:
 	_camera_input_direction = Vector2.ZERO
 	
 	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	print(_camera.global_basis.z)
+	var forward := _camera.global_basis.z
+	var right := _camera.global_basis.x
+	var move_direction := forward * raw_input.y + right * raw_input.x
+	move_direction.y = 0.0
+	move_direction = move_direction.normalized()
+	
+	var y_velocity := velocity.y
+	velocity.y = 0.0
+	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
+	velocity.y = y_velocity + gravity * delta
+	
+	var is_starting_jump := Input.is_action_just_pressed("jump") and is_on_floor()
+	if is_starting_jump:
+		velocity.y += jump_impulse
+		
+	move_and_slide()
