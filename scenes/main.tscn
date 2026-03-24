@@ -1,3 +1,19 @@
 [gd_scene format=3 uid="uid://cj7a8518kk4mg"]
 
+[sub_resource type="Environment" id="Environment_sgp6g"]
+background_mode = 1
+background_color = Color(0.6775044, 0.784652, 1, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_o5qli"]
+
+[sub_resource type="Compositor" id="Compositor_0wfyh"]
+
 [node name="Node3D" type="Node3D" unique_id=1335767999]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=919627812]
+environment = SubResource("Environment_sgp6g")
+camera_attributes = SubResource("CameraAttributesPractical_o5qli")
+compositor = SubResource("Compositor_0wfyh")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1558154607]
+transform = Transform3D(1, 0, 0, 0, 0.8588705, 0.5121928, 0, -0.5121928, 0.8588705, 0, 0.3150157, 0.4103779)
