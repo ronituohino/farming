@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://jiixexlwynhy"]
+
+[ext_resource type="Script" uid="uid://chsml7uxndr2t" path="res://assets/player/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://b3xg86fa8ur5y" path="res://assets/player/animations/idle/idle.png" id="2_toylo"]
+[ext_resource type="Texture2D" uid="uid://dd2j8euqxvemf" path="res://assets/player/animations/walk/walk1.png" id="3_tb4ck"]
+[ext_resource type="Texture2D" uid="uid://bl1qogl8ukqc6" path="res://assets/player/animations/walk/walk2.png" id="4_kwvpd"]
+[ext_resource type="Texture2D" uid="uid://30hey35nq424" path="res://assets/player/animations/walk/walk3.png" id="5_op4fd"]
+[ext_resource type="Texture2D" uid="uid://bkpyrndat4h6p" path="res://assets/player/animations/walk/walk4.png" id="6_m2mll"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sugp2"]
+radius = 2.04
+height = 7.076059
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g2els"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_toylo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tb4ck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kwvpd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_op4fd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m2mll")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
+
+[node name="Player3D" type="CharacterBody3D" unique_id=2052042716]
+script = ExtResource("1_g2els")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1058714622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.048438907, 0)
+shape = SubResource("CapsuleShape3D_sugp2")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=550354513]
+unique_name_in_owner = true
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_g2els")
+animation = &"idle"
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=1634572972]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.9191353, 0.39394188, 0, -0.39394188, 0.9191353, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=949829429]
+shape = SubResource("SphereShape3D_g2els")
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=169622289]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0, 5)

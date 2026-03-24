@@ -10,6 +10,7 @@ extends CharacterBody3D
 
 @onready var _camera: Node3D = %Camera3D
 @onready var _camera_pivot: Node3D = %CameraPivot
+@onready var _sprite: AnimatedSprite3D = %AnimatedSprite3D
 
 var _camera_input_direction := Vector2.ZERO
 
@@ -45,6 +46,15 @@ func _physics_process(delta: float) -> void:
 	var move_direction := forward * raw_input.y + right * raw_input.x
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
+	
+	if raw_input.x == 0.0 and raw_input.y == 0.0:
+		_sprite.play("idle")
+	else:
+		_sprite.play("walk", 1.25)
+		if raw_input.x == 0.0:
+			_sprite.flip_h = raw_input.y > 0.0
+		else:
+			_sprite.flip_h = raw_input.x > 0.0
 	
 	var y_velocity := velocity.y
 	velocity.y = 0.0
